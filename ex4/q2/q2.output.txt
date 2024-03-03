@@ -1,0 +1,3 @@
+"La station FR qui a la plus grande altitude est: "	["PIC DU MIDI", 2883.0]
+"La station FR qui se trouve le plus au sud est: "	["KERGUELEN IS", -48.667]
+"La station FR qui se trouve le plus au nord est: "	["PLATFORM NO. 62566", 57.7]
