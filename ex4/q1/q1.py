@@ -7,14 +7,14 @@ class Q1(job.MRJob):
         #log the latitude
         #check ig the latitude is empty
         if lt == '':
-            #if it is, emit a count of 1 for the word 'empty'
-            yield 'empty', 1
+            #if it is, emit a count of 1 for the hemisphere 'empty'
+            yield 'le # total de stations avec des valeurs nulles en latitude', 1
         elif float(lt) >= 0 and float(lt) <= 90: 
-            #if it is, emit a count of 1 for the hemisphere 'south'
-            yield 'hn', 1
-        elif float(lt) <= 0 and float(lt) >= -90:
             #if it is, emit a count of 1 for the hemisphere 'north'
-            yield 'hs', 1
+            yield 'le # total de stations en hemisphere nord', 1
+        elif float(lt) <= 0 and float(lt) >= -90:
+            #if it is, emit a count of 1 for the hemisphere 'south'
+            yield 'le # total de stations in hemisphere sud', 1
     def reducer(self, key, counts):
         # Sum the counts for each word
         yield key, sum(counts)
