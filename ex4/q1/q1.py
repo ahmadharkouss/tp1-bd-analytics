@@ -9,12 +9,12 @@ class Q1(job.MRJob):
         if lt == '':
             #if it is, emit a count of 1 for the word 'empty'
             yield 'empty', 1
-        elif lt[0] == '-':
+        elif float(lt) >= 0 and float(lt) <= 90: 
             #if it is, emit a count of 1 for the hemisphere 'south'
-            yield 'hs', 1
-        else:
-            #if it is, emit a count of 1 for the hemisphere 'north'
             yield 'hn', 1
+        elif float(lt) <= 0 and float(lt) >= -90:
+            #if it is, emit a count of 1 for the hemisphere 'north'
+            yield 'hs', 1
     def reducer(self, key, counts):
         # Sum the counts for each word
         yield key, sum(counts)
