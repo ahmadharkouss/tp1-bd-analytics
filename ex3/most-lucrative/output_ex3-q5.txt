@@ -1,0 +1,1 @@
+"Parking Meter with Most Revenue"	["27070208", 48450.8500000021]
