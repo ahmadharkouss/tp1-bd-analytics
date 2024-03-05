@@ -1,0 +1,1 @@
+"Least Used Parking Meter"	["99980105", 0.25]
