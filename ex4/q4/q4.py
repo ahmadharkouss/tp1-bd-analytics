@@ -11,8 +11,8 @@ class TemperatureDifference(job.MRJob):
             date = fields[1]
             value = int(fields[3])
 
-            # Emit key-value pairs with the date as the key and the temperature value as the value
-            yield date, value
+            # Emit key-value pairs with the date as the key and the temperature value and its type as the value
+            yield date, (fields[2], value)
 
     def reducer(self, date, values):
         # Extract TMAX and TMIN values for the same date
@@ -20,15 +20,15 @@ class TemperatureDifference(job.MRJob):
         tmin = None
 
         for value in values:
-            if value < 0:
-                tmin = abs(value)
-            else:
-                tmax = value
+            if value[0] == 'TMIN':
+                tmin = value[1]
+            elif value[0] == 'TMAX':
+                tmax = value[1]
 
         # If both TMAX and TMIN values are present, calculate the temperature difference
         if tmax is not None and tmin is not None:
-            temperature_difference = tmax - tmin
-            yield None, temperature_difference
+            temperature_difference = abs(tmax - tmin)
+            yield date, temperature_difference
 
 if __name__ == '__main__':
     TemperatureDifference.run()
