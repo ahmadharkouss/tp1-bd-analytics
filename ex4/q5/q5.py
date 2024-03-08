@@ -27,8 +27,9 @@ class TemperatureDifference(job.MRJob):
 
         # If both TMAX and TMIN values are present, calculate the temperature difference
         if tmax is not None and tmin is not None:
-            temperature_difference = abs(tmax - tmin)
-            yield date, temperature_difference
+            #the data is stored by 10ths of a degree. so we divide by 10 to get the actual temperature in celcius
+            temperature_difference = (abs(tmax - tmin)) / 10
+            yield   None, temperature_difference
 
 if __name__ == '__main__':
     TemperatureDifference.run()
