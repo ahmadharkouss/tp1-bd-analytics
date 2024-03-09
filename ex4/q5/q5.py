@@ -1,6 +1,12 @@
 from mrjob import job
+from mrjob.protocol import JSONValueProtocol
+
 
 class TemperatureDifference(job.MRJob):
+
+    # Set the output protocol to JSON
+
+    OUTPUT_PROTOCOL = JSONValueProtocol
 
     def mapper(self, _, line):
         # Split the CSV line

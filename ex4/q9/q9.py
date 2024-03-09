@@ -1,9 +1,11 @@
 from mrjob import job
 from mrjob.step import MRStep
 
+from mrjob.protocol import JSONValueProtocol
+
 
 class AverageTemperatureDifference(job.MRJob):
-
+    OUTPUT_PROTOCOL = JSONValueProtocol
 
     # Extract temperature information for each station
     def mapper(self, _, line):
